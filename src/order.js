@@ -21,6 +21,8 @@ Order.prototype.items = function() {
 	return this.allItemsJSON;
 };	
 
+// these probably belong in their own class
+
 Order.prototype.total = function() { 
   var prices = this._returnPrices(this.items());
   var length = prices.length;
@@ -29,6 +31,13 @@ Order.prototype.total = function() {
   	total += prices[i];
   }
   return total;
+};
+
+Order.prototype.totalWithTax = function() { 
+	var total = this.total();
+	var tax = total * 0.0864;
+	total = total + tax;
+	return +(total).toFixed(2);
 };
 
 Order.prototype._returnPrices = function(object) { 
