@@ -10,7 +10,7 @@ Order.prototype.addToItems = function(item, callback) {
 	var self = this;
 	menu.getPrice(item, function(price) {
 		items[item] = price;
-		callback(self.totalOrder);
+		callback(self.items());
 	});
 };
 
