@@ -34,4 +34,11 @@ describe('Order', function() {
 			done();
 		});
 	});
+
+	it('should be able to add tax to the order', function(done) { 
+		addItems(order, function(orderWithItems) { 
+			expect(orderWithItems.totalWithTax()).to.equal(10.32);
+			done();
+		});
+	});
 });
