@@ -10,6 +10,13 @@ describe('Order', function() {
 		order = new Order();
 	});
 
+	function addItems(order, callback) { 
+		order.addToItems('Cafe Latte', function() {});
+		order.addToItems('Flat White', function() { 
+			callback(order);
+		});
+	};
+
 	it('should be able to add to an order', function(done) { 
 		order.addToItems('Cafe Latte', function(totalOrder) { 
 			expect(totalOrder).to.contain({"Cafe Latte": 4.75});
@@ -21,5 +28,10 @@ describe('Order', function() {
 		expect(order.items()).to.contain({});
 	});
 
-	
+	it('should be able to total the order', function(done) {
+		addItems(order, function(orderWithItems) { 
+			expect(orderWithItems.total()).to.equal(9.50);
+			done();
+		});
+	});
 });
