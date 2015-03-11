@@ -17,7 +17,7 @@ describe('Order', function() {
 		});
 	};
 
-	it('should be able to add to an order', function(done) { 
+	it('should be able to add items to an order', function(done) { 
 		order.addToItems('Cafe Latte', function(totalOrder) { 
 			expect(totalOrder).to.contain({"Cafe Latte": 4.75});
 			done();
