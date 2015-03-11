@@ -2,11 +2,14 @@ var Menu = require('./menu');
 var menu = new Menu('hipstercoffee.json');
 
 var Order = function() { 
-	this.totalOrder = {};
+	this.json = '{}';
+	this.allItemsJSON = JSON.parse(this.json);
 };
 
+// this is unecessary we just need to take the key value for each item
+
 Order.prototype.addToItems = function(item, callback) { 
-	var items = this.totalOrder;
+	var items = this.items();
 	var self = this;
 	menu.getPrice(item, function(price) {
 		items[item] = price;
@@ -15,7 +18,27 @@ Order.prototype.addToItems = function(item, callback) {
 };
 
 Order.prototype.items = function() {
-	return this.totalOrder;
+	return this.allItemsJSON;
+};	
+
+Order.prototype.total = function() { 
+  var prices = this._returnPrices(this.items());
+  var length = prices.length;
+  var total = 0;
+  for(var i = 0; i < length; i++) { 
+  	total += prices[i];
+  }
+  return total;
+};
+
+Order.prototype._returnPrices = function(object) { 
+	var keys = Object.keys(object);
+  var length = keys.length;
+  var values = Array(length);
+  for (var i = 0; i < length; i++) {
+    values[i] = object[keys[i]];
+  }
+  return values;
 };
 
 module.exports = Order;
