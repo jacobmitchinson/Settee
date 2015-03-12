@@ -25,9 +25,8 @@ Menu.prototype.hasExistence = function(item, callback) {
  
 Menu.prototype._readJSON = function(callback) {
 	fs.readFile(this.file, 'utf8', function(err,data) { 
-		if(err) throw err; // TODO: I don't want to throw an error here. That will crash system.
 		var json = JSON.parse(data);
-		callback(err, json); // TODO: callbacks should have an error.
+		callback(json); // TODO: callbacks should have an error.
 	});
 };
 
