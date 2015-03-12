@@ -24,6 +24,13 @@ describe('Order', function() {
 		});
 	});
 
+	it('should know when it can\'t add an item', function(done) { 
+		order.addToItems('BIG BURGER', function(hasAddedItem) { 
+			expect(hasAddedItem).to.be.false;
+			done();
+		});
+	});
+
 	it('should be able to retrieve items from an order', function() { 
 		expect(order.items()).to.contain({});
 	});
