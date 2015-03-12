@@ -13,10 +13,10 @@ Order.prototype.addToItems = function(item, callback) {
 		if(itemExists) { 
 			menu.getPrice(item, function(price) {
 				items[item] = price;
-				callback();
+				callback(true);
 			});
 		} else { 
-			callback('This item doesn\'t exist!');
+			callback(false);
 		}
 	});
 };
