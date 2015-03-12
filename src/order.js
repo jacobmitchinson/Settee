@@ -10,10 +10,14 @@ var Order = function() {
 
 Order.prototype.addToItems = function(item, callback) { 
 	var items = this.items();
-	var self = this;
-	menu.getPrice(item, function(price) {
-		items[item] = price;
-		callback(self.items());
+	var _this = this;
+	menu.hasItem(item, function(itemExists) { 
+		if(itemExists) { 
+			menu.getPrice(item, function(price) {
+				items[item] = price;
+				callback(_this.items());
+			});
+		};
 	});
 };
 
