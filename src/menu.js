@@ -9,15 +9,25 @@ var Menu = function(file) {
 Menu.prototype.getPrice = function(item, callback) { 	
 	this._readJSON(function(menuJSON) {
 		var itemPrice = menuJSON.prices[0][item];
-		callback(itemPrice);
+		callback(itemPrice); // TODO: callbacks should have an error
+	});
+};
+
+Menu.prototype.hasExistence = function(item, callback) {
+	this._readJSON(function(menuJSON) { 
+		if(menuJSON.prices[0][item]) { 
+			callback(true);
+		} else { 
+			callback(false);
+		}
 	});
 };
  
 Menu.prototype._readJSON = function(callback) {
 	fs.readFile(this.file, 'utf8', function(err,data) { 
-		if(err) throw err; 
+		if(err) throw err; // TODO: I don't want to throw an error here. That will crash system.
 		var json = JSON.parse(data);
-		callback(json);
+		callback(err, json); // TODO: callbacks should have an error.
 	});
 };
 
