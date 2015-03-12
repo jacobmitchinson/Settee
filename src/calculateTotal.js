@@ -14,7 +14,7 @@ CalculateTotal.prototype.total = function(items) {
 
 CalculateTotal.prototype.totalWithTax = function(items) { 
   var total = this.total(items);
-  var taxRate = 0.0864;
+  var taxRate = this.taxRate;
   var tax = total * this.taxRate;
   total = total + tax;
   return +(total).toFixed(2);
