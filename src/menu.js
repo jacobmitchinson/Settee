@@ -4,6 +4,8 @@ var Menu = function(file) {
 	this.file = file;
 };
 
+// TODO: menu should just be responsible for returning item with price
+
 Menu.prototype.getPrice = function(item, callback) { 	
 	this._readJSON(function(menuJSON) {
 		var itemPrice = menuJSON.prices[0][item];
