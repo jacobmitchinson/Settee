@@ -37,7 +37,8 @@ Order.prototype.total = function() {
 
 Order.prototype.totalWithTax = function() { 
 	var total = this.total();
-	var tax = total * 0.0864;
+	var taxRate = 0.0864;
+	var tax = total * taxRate;
 	total = total + tax;
 	return +(total).toFixed(2);
 };
