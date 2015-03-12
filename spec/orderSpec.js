@@ -18,8 +18,8 @@ describe('Order', function() {
 	};
 
 	it('should be able to add items to an order', function(done) { 
-		order.addToItems('Cafe Latte', function(totalOrder) { 
-			expect(totalOrder).to.contain({"Cafe Latte": 4.75});
+		order.addToItems('Cafe Latte', function() { 
+			expect(order.items()).to.contain({"Cafe Latte": 4.75});
 			done();
 		});
 	});
