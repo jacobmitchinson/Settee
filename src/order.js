@@ -17,7 +17,9 @@ Order.prototype.addToItems = function(item, callback) {
 				items[item] = price;
 				callback(_this.items());
 			});
-		};
+		} else { 
+			callback('This item doesn\'t exist!');
+		}
 	});
 };
 
