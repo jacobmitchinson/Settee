@@ -3,9 +3,10 @@ var Order 					= require('../src/order');
 var chai 						= require('chai');
 var expect 					= chai.expect;
 
-describe('Order', function() {
+describe('CalculateTotal', function() {
 
 	var order;
+	var calculateTotal;
 
 	beforeEach(function() { 
 		order = new Order(); // TODO: use spies.
@@ -20,9 +21,9 @@ describe('Order', function() {
 	};
 
 	it('should be able to total the order', function(done) {
-		var totalWithTax = 9.50;
+		var total = 9.50;
 		addItems(order, function(orderWithItems) { 
-			expect(orderWithItems.total()).to.equal(totalWithTax);
+			expect(calculateTotal.total(order.items())).to.equal(total);
 			done();
 		});
 	});
@@ -30,7 +31,7 @@ describe('Order', function() {
 	it('should be able to add tax to the order', function(done) { 
 		var totalWithTax = 10.32;
 		addItems(order, function(orderWithItems) { 
-			expect(orderWithItems.totalWithTax()).to.equal(totalWithTax);
+			expect(calculateTotal.totalWithTax(order.items())).to.equal(totalWithTax);
 			done();
 		});
 	});
