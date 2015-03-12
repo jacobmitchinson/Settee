@@ -27,20 +27,4 @@ describe('Order', function() {
 	it('should be able to retrieve items from an order', function() { 
 		expect(order.items()).to.contain({});
 	});
-
-	it('should be able to total the order', function(done) {
-		var totalWithTax = 9.50;
-		addItems(order, function(orderWithItems) { 
-			expect(orderWithItems.total()).to.equal(totalWithTax);
-			done();
-		});
-	});
-
-	it('should be able to add tax to the order', function(done) { 
-		var totalWithTax = 10.32;
-		addItems(order, function(orderWithItems) { 
-			expect(orderWithItems.totalWithTax()).to.equal(totalWithTax);
-			done();
-		});
-	});
 });
