@@ -6,7 +6,7 @@ var Order = function() {
 	this.allItemsJSON = JSON.parse(this.json);
 };
 
-// this is unecessary we just need to take the key value for each item
+// TODO: this is unecessary we just need to take the key value for each item
 
 Order.prototype.addToItems = function(item, callback) { 
 	var items = this.items();
@@ -21,7 +21,7 @@ Order.prototype.items = function() {
 	return this.allItemsJSON;
 };	
 
-// these probably belong in their own class
+// TODO: these probably belong in their own class
 
 Order.prototype.total = function() { 
   var prices = this._returnPrices(this.items());
@@ -32,6 +32,8 @@ Order.prototype.total = function() {
   }
   return total;
 };
+
+// TODO: Remove magic numbers
 
 Order.prototype.totalWithTax = function() { 
 	var total = this.total();
