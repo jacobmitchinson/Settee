@@ -13,7 +13,7 @@ Menu.prototype.getPrice = function(item, callback) {
 	});
 };
 
-Menu.prototype.hasExistence = function(item, callback) {
+Menu.prototype.hasItem = function(item, callback) {
 	this._readJSON(function(menuJSON) { 
 		if(menuJSON.prices[0][item]) { 
 			callback(true);
