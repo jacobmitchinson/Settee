@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/makersacademy/till_tech_test",
   "devDependencies": {
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^1.14.5",
+    "webdriverio": "^2.4.5"
   },
   "dependencies": {
-    "express": "^4.12.2"
+    "express": "^4.12.2",
+    "pdfkit": "^0.7.0"
   }
 }
