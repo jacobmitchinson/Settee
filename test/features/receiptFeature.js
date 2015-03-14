@@ -25,11 +25,12 @@ describe('Receipt', function() {
 		receipt.create('test', order);
 	}
 
-
 	function createOrder() { 
 		var order = new Order();
 		order.addToItems('Cafe Latte', function() { 
-			createReceipt(order.items());
+			order.addToItems('Choc Mudcake', function() { 
+				createReceipt(order.items());	
+			});
 		});
 	};
 
@@ -38,7 +39,7 @@ describe('Receipt', function() {
 		this.timeout(2000);
 		setTimeout(function() {
  			readPDF();
- 			expect(data).to.contain('Cafe Latte: 3.75');
+ 			expect(data).to.contain('Cafe Latte: 4.75');
  			done();
 		}, 1500);
 	});
