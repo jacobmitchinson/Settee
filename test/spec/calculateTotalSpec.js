@@ -28,6 +28,14 @@ describe('CalculateTotal', function() {
 		});
 	});
 
+	it('should be able to return the tax', function() { 
+		var tax = 0.82;
+		addItems(order, function(orderWithItems) { 
+			expect(calculateTotal.totalTax(order.items())).to.equal(totalWithTax);
+			done();
+		});
+	});
+
 	it('should be able to add tax to the order', function(done) { 
 		var totalWithTax = 10.32;
 		addItems(order, function(orderWithItems) { 
