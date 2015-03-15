@@ -20,6 +20,13 @@ CalculateTotal.prototype.totalWithTax = function(items) {
   return +(total).toFixed(2);
 };
 
+CalculateTotal.prototype.totalTax = function(items) {
+  var total = this.total(items); // TODO: could we DRY this out?
+  var taxRate = this.taxRate;
+  var tax = total * this.taxRate;
+  return +(tax).toFixed(2);
+};
+
 CalculateTotal.prototype._returnPrices = function(object) { 
   var keys = Object.keys(object);
   var length = keys.length;
