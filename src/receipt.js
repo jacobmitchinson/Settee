@@ -10,6 +10,7 @@ Receipt.prototype.create = function(fileName, order) {
   this.doc.pipe(fs.createWriteStream(fileName + '.pdf'));
   this._addAllItems(order);
   this._addTotal(order);
+  this._addTax(order);
   this._addTotalWithTax(order);
   this.doc.end();
 };
@@ -31,6 +32,13 @@ Receipt.prototype._addTotal = function(order) {
   var total = calculateTotal.total(order);
   var totalText = 'Cost: ' + '£' + total; 
   this._addText(totalText);
+};
+
+Receipt.prototype._addTax = function(order) {
+  var calculateTotal = new CalculateTotal();
+  var tax = calculateTotal.totalTax(order);
+  var taxText = 'Tax: ' + '£' + tax; 
+  this._addText(taxText);
 };
 
 Receipt.prototype._addTotalWithTax = function(order) {
