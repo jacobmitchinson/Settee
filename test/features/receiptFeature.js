@@ -35,6 +35,28 @@ describe('Receipt', function() {
 		});
 	};
 
+	it('should display the name of the coffee shop', function(done) { 
+		createOrder();
+		this.timeout(2500);
+		setTimeout(function() {
+ 			readPDF();
+ 			expect(data).to.contain('The Coffee Connection');
+ 			done();
+		}, 1500);
+	});
+
+
+	it('should display the address of the coffee shop', function(done) { 
+		createOrder();
+		this.timeout(2500);
+		setTimeout(function() {
+ 			readPDF();
+ 			expect(data).to.contain('123 Lakeside Way. Phone: +1 (650) 360-0708');
+ 			done();
+		}, 1500);
+	});
+
+
 	it('should be able to display ordered items with a price', function(done) { 
 		createOrder();
 		this.timeout(2500);
