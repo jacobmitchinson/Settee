@@ -55,7 +55,16 @@ describe('Receipt', function() {
 		}, 1500);
 	});
 
-	it('should be able to add the tax to the receipt', function(done) { 
+	it('should be able to show the tax', function() { 
+		createOrder();
+		this.setTimeout(2500);
+		setTimeout(function() { 
+			readPDF();
+			expect(data).to.contain('Tax: �0.96')
+		});
+	});
+
+	it('should be able to add the tax to the total on the receipt', function(done) { 
 		createOrder();
 		this.timeout(2500);
 		setTimeout(function() { 
