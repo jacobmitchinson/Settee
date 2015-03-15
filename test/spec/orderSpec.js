@@ -1,4 +1,4 @@
-var Order 	= require('../src/order');
+var Order 	= require('../../src/order');
 var chai 		= require('chai');
 var expect 	= chai.expect;
 
