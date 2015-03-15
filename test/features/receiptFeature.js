@@ -9,6 +9,7 @@ describe('Receipt', function() {
 
 	var pdf; 
 	var data;
+	var order;
 
 	afterEach(function() {
 		var filePath = "test.pdf";
@@ -26,7 +27,7 @@ describe('Receipt', function() {
 	}
 
 	function createOrder() { 
-		var order = new Order();
+		order = new Order();
 		order.addToItems('Cafe Latte', function() { 
 			order.addToItems('Choc Mudcake', function() { 
 				createReceipt(order.items());	
@@ -36,11 +37,31 @@ describe('Receipt', function() {
 
 	it('should be able to display ordered items with a price', function(done) { 
 		createOrder();
-		this.timeout(2000);
+		this.timeout(2500);
 		setTimeout(function() {
  			readPDF();
- 			expect(data).to.contain('Cafe Latte: 4.75');
+ 			expect(data).to.contain('Choc Mudcake: �6.40');
  			done();
+		}, 1500);
+	});
+
+	it('should be able to calculate the total cost', function(done) { 
+		createOrder();
+		this.timeout(2500);
+		setTimeout(function() { 
+			readPDF();
+			expect(data).to.contain('Cost: �11.15');
+			done();
+		}, 1500);
+	});
+
+	it('should be able to add the tax to the receipt', function(done) { 
+		createOrder();
+		this.timeout(2500);
+		setTimeout(function() { 
+			readPDF();
+			expect(data).to.contain('Total: �12.11');
+			done();
 		}, 1500);
 	});
 
