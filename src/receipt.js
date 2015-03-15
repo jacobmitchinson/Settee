@@ -6,8 +6,8 @@ var Receipt = function() {
 	this.doc = new PDFDocument();
 };
 
-Receipt.prototype.create = function(name, order) {
-  this.doc.pipe(fs.createWriteStream(name + '.pdf'));
+Receipt.prototype.create = function(fileName, order) {
+  this.doc.pipe(fs.createWriteStream(fileName + '.pdf'));
   this._addAllItems(order);
   this._addTotal(order);
   this._addTotalWithTax(order);
