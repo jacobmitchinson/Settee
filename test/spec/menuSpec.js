@@ -1,6 +1,6 @@
 var chai 				= require('chai');
 var expect 		 	= chai.expect;
-var Menu		 		= require('../src/menu');
+var Menu		 		= require('../../src/menu');
 
 describe('Menu', function() {
 	var menu;
