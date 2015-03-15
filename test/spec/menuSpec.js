@@ -1,6 +1,7 @@
 var chai 				= require('chai');
 var expect 		 	= chai.expect;
 var Menu		 		= require('../../src/menu');
+var menuJSON		= require('../../hipstercoffee.json');
 
 describe('Menu', function() {
 	var menu;
@@ -26,6 +27,14 @@ describe('Menu', function() {
 	it('should be able to look up an items price', function(done) {
 		menu.getPrice('Cafe Latte', function(price) { 
 			expect(price).to.equal(4.75);
+			done();
+		})
+	});
+
+	it('should be able to show all items available', function(done) { 
+		var allItems = Object.keys(menuJSON.prices[0]);
+		menu.allItems(function(items) { 
+			expect(items).to.eql(allItems);
 			done();
 		})
 	});
