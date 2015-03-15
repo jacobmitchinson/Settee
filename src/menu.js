@@ -23,6 +23,12 @@ Menu.prototype.hasItem = function(item, callback) {
 	});
 };
  
+Menu.prototype.allItems = function(callback) { 
+	this._readJSON(function(menuJSON) { 
+		callback(Object.keys(menuJSON.prices[0]));
+	});
+};
+
 Menu.prototype._readJSON = function(callback) {
 	fs.readFile(this.file, 'utf8', function(err,data) { 
 		var json = JSON.parse(data);
