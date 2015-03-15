@@ -3,11 +3,14 @@ var fs              = require('fs');
 var CalculateTotal  = require('./calculateTotal');
 
 var Receipt = function() { 
-	this.doc = new PDFDocument();
+	this.doc = new PDFDocument({size: 'executive'});
 };
 
 Receipt.prototype.create = function(fileName, order) {
   this.doc.pipe(fs.createWriteStream(fileName + '.pdf'));
+  this._addImage();
+  this._addName();
+  this._addAddress();
   this._addAllItems(order);
   this._addTotal(order);
   this._addTax(order);
@@ -15,8 +18,27 @@ Receipt.prototype.create = function(fileName, order) {
   this.doc.end();
 };
 
+Receipt.prototype._addImage = function() { 
+  this.doc.image('receipt/shopLogo.png', {
+    width: 200,
+    align: 'center'
+  });
+};
+
 Receipt.prototype._addText = function(text) {
 	this.doc.text(text);
+};
+
+// TODO: observe the open/closed principle
+
+Receipt.prototype._addName = function() { 
+  var name = 'The Coffee Connection';
+  this.doc.text(name);
+};
+
+Receipt.prototype._addAddress = function() {
+  var address = '123 Lakeside Way. Phone: +1 (650) 360-0708';
+  this.doc.text(address);
 };
 
 Receipt.prototype._addAllItems = function(order) {  
