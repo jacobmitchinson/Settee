@@ -72,12 +72,11 @@ Receipt.prototype._addTotalWithTax = function(order) {
 
 // TODO: not sure this belongs here
 
-Receipt.prototype._itemsWithPrice = function(order) { 
-	var items = Object.keys(order);
+Receipt.prototype._itemsWithPrice = function(items) { 
 	var length = items.length;
 	var pairs = Array(length);
 	for (var i = 0; i < length; i++) {
-	  pairs[i] = [items[i] + ': ' + '£' + (order[items[i]]).toFixed(2)];
+	  pairs[i] = [items[i][0] + ': ' + '£' + (items[i][1]).toFixed(2)];
 	}
 	return pairs;
 };

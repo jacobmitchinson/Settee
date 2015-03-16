@@ -19,7 +19,7 @@ describe('Order', function() {
 
 	it('should be able to add items to an order', function(done) { 
 		order.addToItems('Cafe Latte', function() { 
-			expect(order.items()).to.contain({"Cafe Latte": 4.75});
+			expect(order.items().shift()).to.eql(["Cafe Latte", 4.75]);
 			done();
 		});
 	});
@@ -29,9 +29,5 @@ describe('Order', function() {
 			expect(hasAddedItem).to.be.false;
 			done();
 		});
-	});
-
-	it('should be able to retrieve items from an order', function() { 
-		expect(order.items()).to.contain({});
 	});
 });
