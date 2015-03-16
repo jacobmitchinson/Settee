@@ -52,5 +52,12 @@ describe('Homepage', function() {
   		.call(done);
   });
 
+  it('should be able to send the receipt for the order', function(done) { 
+  	enterOrder()
+  		.click('#send-receipt')
+  		.getText('#receipt', function(err, text) { 
+  			expect(text).to.contain('Receipt Sent')
+  		});
+  });  
 
 });
