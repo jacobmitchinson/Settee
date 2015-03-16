@@ -7,8 +7,8 @@ var Menu = require('./src/menu');
 var CalculateTotal = require('./src/calculateTotal');
 
 var menu = new Menu('hipstercoffee.json');
-var calculateTotal = new CalculateTotal();
 var order = new Order();
+var calculateTotal = new CalculateTotal();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
