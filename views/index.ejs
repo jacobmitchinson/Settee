@@ -25,6 +25,16 @@
 			<input type="submit" value="Reset Order" id='reset'>
 		</form>
 	</section>
+
+	<section id='display-total'> 
+		<% console.log(currentOrder.items()) %>
+		<% if(currentOrder.items().length !== 0) { %>
+		<%= 'Total: ' + '£' + total.total(currentOrder.items()).toFixed(2); %>
+		<% } %>
+	</section> 
+
+	
+
 </html>
 
 
