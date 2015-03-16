@@ -2,8 +2,7 @@ var Menu = require('./menu');
 var menu = new Menu('hipstercoffee.json');
 
 var Order = function() { 
-	this.json = '{}';
-	this.allItemsJSON = JSON.parse(this.json);
+	this.allItems = [];
 };
 
 Order.prototype.addToItems = function(item, callback) { 
@@ -11,8 +10,8 @@ Order.prototype.addToItems = function(item, callback) {
 	var _this = this;
 	menu.hasItem(item, function(itemExists) { // TODO: MAKE THIS SHORTER!!! 
 		if(itemExists) { 
-			menu.getPrice(item, function(price) {
-				items[item] = price;
+			menu.getPrice(item, function(price) { 
+				items.push([item, price]);
 				callback(true);
 			});
 		} else { 
@@ -22,7 +21,7 @@ Order.prototype.addToItems = function(item, callback) {
 };
 
 Order.prototype.items = function() {
-	return this.allItemsJSON;
+	return this.allItems;
 };	
 
 module.exports = Order;
