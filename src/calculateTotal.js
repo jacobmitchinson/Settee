@@ -1,3 +1,6 @@
+var Menu = require('./menu');
+var menu = new Menu('hipstercoffee.json'); 
+
 var CalculateTotal = function() { 
   this.taxRate = 0.0864;
 };
@@ -15,27 +18,25 @@ CalculateTotal.prototype.total = function(items) {
 CalculateTotal.prototype.totalWithTax = function(items) { 
   var total = this.total(items);
   var taxRate = this.taxRate;
-  var tax = total * this.taxRate;
-  total = total + tax;
+  var tax = total * taxRate;
+  var total = total + tax;
   return +(total).toFixed(2);
 };
 
 CalculateTotal.prototype.totalTax = function(items) {
-  var total = this.total(items); // TODO: could we DRY this out?
+  var total = this.total(items);
   var taxRate = this.taxRate;
-  var tax = total * this.taxRate;
+  var tax = total * taxRate;
   return +(tax).toFixed(2);
 };
 
-CalculateTotal.prototype._returnPrices = function(object) { 
-  var keys = Object.keys(object);
-  var length = keys.length;
-  var values = Array(length);
+CalculateTotal.prototype._returnPrices = function(items) { 
+  var length = items.length;
+  var prices = [];
   for (var i = 0; i < length; i++) {
-    values[i] = object[keys[i]];
+    prices.push(items[i][1]); 
   }
-  return values;
+  return prices;
 };
-
 
 module.exports = CalculateTotal;
