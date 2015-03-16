@@ -14,16 +14,6 @@ describe('Homepage', function() {
     client.end(done);
   });
 
-  it('should enable the user to reset the order', function(done) { 
-  	client
-  		.url('http://localhost:3000')
-  		.click('#reset')
-  		.getText('#current-orders', function(err, text) { 
-  			expect(text).not.to.contain('Cafe Latte: £4.75')
-  		})
-  		.call(done);
-  });
-
 	it('should enable the user to enter the order', function(done) { 
 		client
 			.url('http://localhost:3000')
@@ -32,11 +22,23 @@ describe('Homepage', function() {
     	})
 			.click('//*[@id="item-dropdown"]/option[1]')
 			.click('#submit')
-			.getText('#current-orders', function(err, text) { 
+			.getText('#current-items', function(err, text) { 
 				expect(text).to.contain('Cafe Latte: £4.75')
 			})
 			.call(done);
 	});
+
+	
+  it('should enable the user to reset the order', function(done) { 
+  	client
+  		.url('http://localhost:3000')
+  		.click('#reset')
+  		.url('http://localhost:3000')
+  		.getText('#current-orders', function(err, text) { 
+  			expect(text).not.to.contain('Cafe Latte: £4.75')
+  		})
+  		.call(done);
+  });
 
 
 });
