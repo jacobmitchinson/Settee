@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+<html>
+	<head> 
+	</head> 
+
+	<section id='select_item'> 
+		<form action='/order_item' method='post' id='order'>
+			<select name='item' form='order' id='item-dropdown'>
+				<% allItems.forEach(function(item) { %>
+					<option value='<%=item%>'><%= item %></option>
+				<% }) %>
+			</select>
+			<input type='submit' value='Submit Item' id='submit'>
+		</form>
+	</section>
+
+	<section id='current-items'> 
+		<% currentOrder.items().forEach(function(item) { %>
+			<ul><%= item[0] + ': ' + '£' + (item[1]).toFixed(2) %></ul>
+		<% }) %> 
+	</section>
+
+	<section id='reset-order'>
+		<form action='/reset_order' method='post' id='reset-form'>
+			<input type="submit" value="Reset Order" id='reset'>
+		</form>
+	</section>
+</html>
+
+
+
