@@ -2,7 +2,7 @@ var sendgrid 		= require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.
 var newEmail    = new sendgrid.Email();
 
 var SendReceipt = function() { 
-	DEFAULT_FILE_LOCATION = './receipts';
+	DEFAULT_FILE_LOCATION = './receipts/';
 	DEFAULT_SUBJECT = 'Your receipt.';
 	DEFAULT_MESSAGE = 'Thanks for stopping by!';
 	this.emailTo = null;
@@ -44,7 +44,7 @@ SendReceipt.prototype.subject = function(subject) {
 };
 
 SendReceipt.prototype.receipt = function(fileName) {
-	this.emailFile = this.fileDirectory + '/' + fileName + '.pdf';
+	this.emailFile = this.fileDirectory + fileName + '.pdf';
 };
 
 SendReceipt.prototype.setFileDirectory = function(directory) {
