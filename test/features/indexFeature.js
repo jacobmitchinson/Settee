@@ -54,6 +54,7 @@ describe('Homepage', function() {
 
   it('should be able to send the receipt for the order', function(done) { 
   	enterOrder()
+  		.setValue('#email', 'jmitchinson@gmail.com')
   		.click('#send-receipt')
   		.getText('#receipt', function(err, text) { 
   			expect(text).to.contain('Receipt Sent')
