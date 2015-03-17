@@ -1,7 +1,23 @@
 var expect = require('chai').expect;
 var SendReceipt = require('../../src/sendReceipt');
+var Receipt 				= require('../../src/receipt');
+var Order 					= require('../../src/order');
 
 describe('SendReceipt', function() { 
+
+	function createReceipt(order) { 
+		var receipt = new Receipt();
+		receipt.create('test', order);
+	}
+
+	function createOrder() { 
+		order = new Order();
+		order.addToItems('Cafe Latte', function() { 
+			order.addToItems('Choc Mudcake', function() { 
+				createReceipt(order.items());	
+			});
+		});
+	};
 
 	var sendReceipt;
 
@@ -45,10 +61,14 @@ describe('SendReceipt', function() {
 		sendReceipt.subject('Your Receipt');
 		sendReceipt.receipt('test');
 		sendReceipt.message('Thanks for stopping by at the Coffee Connection. Here\'s your receipt.');
-		sendReceipt.send(function(err, hasSent) {
-			expect(hasSent).to.eql({message: 'success'});
-			done();
-		});
+		createOrder();
+		this.timeout(4000);
+		setTimeout(function() {
+ 			sendReceipt.send(function(err, hasSent) {
+				expect(hasSent).to.eql({message: 'success'});
+				done();
+			});
+		}, 1500);
 	});
 
 });
