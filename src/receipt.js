@@ -2,12 +2,12 @@ var PDFDocument     = require('pdfkit');
 var fs              = require('fs');
 var CalculateTotal  = require('./calculateTotal');
 
-var Receipt = function() { 
+var Receipt = function(location) { 
 	this.doc = new PDFDocument({size: 'executive'});
 };
 
 Receipt.prototype.create = function(fileName, order) {
-  this.doc.pipe(fs.createWriteStream(fileName + '.pdf'));
+  this.doc.pipe(fs.createWriteStream('./receipts/' + fileName + '.pdf'));
   this._addImage();
   this._addName();
   this._addAddress();
