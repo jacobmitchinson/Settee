@@ -41,7 +41,7 @@ Receipt.prototype._addAddress = function() {
   this.doc.text(address);
 };
 
-Receipt.prototype._addAllItems = function(order) {  
+Receipt.prototype._addAllItems = function(order) { 
 	var itemsWithPrice = this._itemsWithPrice(order);
   var length = itemsWithPrice.length;
   for(var i = 0; i < length; i++) { 

@@ -35,10 +35,24 @@
 
 	<section id='receipt'> 
 		<form action='/send_receipt' method='post' id='send-receipt-form'>
-			<input type='text' value='email' id='email'> 
+			<input type='text' name='email' value='email' id='email'> 
 			<input type="submit" value="Send Receipt" id='send-receipt'>
 		</form>
+		<div id='sent'>
+			<% if(sent) { %>
+			<h5 id='sent'><%='Receipt Sent'%><h5>
+			<% } %>
+		</div> 
 	</section>
+
+	<section id='payment-section'> 
+		<form action='/payment' method='post' id='send-payment-form'>
+			<input type='text' name='payment' id='payment'> 
+			<input type="submit" value="Send Payment" id='send-payment'>
+		</form>
+	</section>
+
+
 </html>
 
 

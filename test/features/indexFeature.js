@@ -17,6 +17,8 @@ describe('Homepage', function() {
   function enterOrder() {
   	client
 			.url('http://localhost:3000')
+      .click('#reset')
+      .url('http://localhost:3000')
 			.click('//*[@id="item-dropdown"]/option[1]')
 			.click('#submit')
 			.url('http://localhost:3000')
@@ -24,6 +26,18 @@ describe('Homepage', function() {
 			.click('#submit')
 		return client;
   };
+
+  it('should be able to send the receipt for the order', function(done) { 
+    enterOrder()
+      .setValue('#email', 'test@test.com')
+      .click('#send-receipt')
+      .url('http://localhost:3000')
+      .getText('#receipt', function(err, text) { 
+        console.log(text);
+        expect(text).to.contain('Receipt Sent')
+      })
+      .call(done);
+  });  
 
 	it('should enable the user to enter the order', function(done) { 
 		enterOrder()
@@ -52,13 +66,13 @@ describe('Homepage', function() {
   		.call(done);
   });
 
-  it('should be able to send the receipt for the order', function(done) { 
-  	enterOrder()
-  		.setValue('#email', 'jmitchinson@gmail.com')
-  		.click('#send-receipt')
-  		.getText('#receipt', function(err, text) { 
-  			expect(text).to.contain('Receipt Sent')
-  		});
-  });  
+  it('should be able to find change due', function(done) { 
+    enterOrder()
+      .setValue('#payment', 10)
+      .click('#send-payment')
+      .getText('#change-due', function(err, text) { 
+        expect(text).to.contain('£0.50');
+      })
+  });
 
 });
