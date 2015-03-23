@@ -1,3 +1,6 @@
+This is a tech test to replicate a point of service till. The till is able to make PDF receipts of orders, store them and send via email using the SendGrid API. This project uses Node.js and tests using Mocha, Chai, Webdriver.io.
+
+
 Till tech test
 ==============
 
