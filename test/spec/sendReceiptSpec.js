@@ -5,6 +5,8 @@ var Order 					= require('../../src/order');
 
 describe('SendReceipt', function() { 
 
+	// TODO: this should be using sinon to double
+
 	function createReceipt(order) { 
 		var receipt = new Receipt();
 		receipt.create('test', order);
@@ -26,12 +28,12 @@ describe('SendReceipt', function() {
 	});
 
 	it('should enable a user to select an email to send to', function() { 
-		sendReceipt.to('jmitchinson@gmail.com');
+		sendReceipt.to('test@test.com');
 		expect(sendReceipt.emailTo).to.eql('jmitchinson@gmail.com');
 	});
 
 	it('should enable a user to select where the email came from', function() { 
-		sendReceipt.from('jmitchinson@gmail.com');
+		sendReceipt.from('test@test.com');
 		expect(sendReceipt.emailFrom).to.eql('jmitchinson@gmail.com');
 	});
 
@@ -56,8 +58,8 @@ describe('SendReceipt', function() {
 	});
 
 	it('should send an email', function(done) { 
-		sendReceipt.to('jmitchinson@gmail.com');
-		sendReceipt.from('jmitchinson@gmail.com');
+		sendReceipt.to('test@test.com');
+		sendReceipt.from('test@test.com');
 		sendReceipt.subject('Your Receipt');
 		sendReceipt.receipt('test');
 		sendReceipt.message('Thanks for stopping by at the Coffee Connection. Here\'s your receipt.');
