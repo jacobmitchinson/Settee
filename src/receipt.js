@@ -6,6 +6,8 @@ var Receipt = function(location) {
 	this.doc = new PDFDocument({size: 'executive'});
 };
 
+// TODO: DRY this out
+
 Receipt.prototype.create = function(fileName, order) {
   this.doc.pipe(fs.createWriteStream('./receipts/' + fileName + '.pdf'));
   this._addImage();
@@ -46,7 +48,7 @@ Receipt.prototype._addAllItems = function(order) {
   var length = itemsWithPrice.length;
   for(var i = 0; i < length; i++) { 
   	this._addText(itemsWithPrice[i][0]);
-  };
+  }
 };
 
 Receipt.prototype._addTotal = function(order) {
@@ -70,11 +72,9 @@ Receipt.prototype._addTotalWithTax = function(order) {
   this._addText(totalWithTaxText);
 };
 
-// TODO: not sure this belongs here
-
 Receipt.prototype._itemsWithPrice = function(items) { 
 	var length = items.length;
-	var pairs = Array(length);
+	var pairs = new Array(length);
 	for (var i = 0; i < length; i++) {
 	  pairs[i] = [items[i][0] + ': ' + '£' + (items[i][1]).toFixed(2)];
 	}
